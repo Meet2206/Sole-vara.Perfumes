@@ -56,7 +56,7 @@ export const products: Product[] = [
     name: 'Éclat',
     description: 'A refined woody composition, Éclat reveals the strength of cedarwood fused with sacred white sage. Accents of sandalwood and golden amber create a sophisticated, enduring signature.',
     price: 8800,
-    image: '/assets/Éclat.png',
+    image: '/assets/Eclat.png',
     category: 'eau-de-parfum',
     scentFamily: 'woody',
     volume: '100ml',
