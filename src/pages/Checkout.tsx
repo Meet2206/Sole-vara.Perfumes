@@ -223,7 +223,7 @@ const Checkout = () => {
             <div className="space-y-4">
               <div className="flex justify-between text-gray-700">
                 <span>Subtotal</span>
-                <span>${totalPrice.toFixed(2)}</span>
+                <span>₹{totalPrice.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-gray-700">
                 <span>Shipping</span>
@@ -233,12 +233,12 @@ const Checkout = () => {
               </div>
               <div className="flex justify-between text-gray-700">
                 <span>Tax (8%)</span>
-                <span>${tax.toFixed(2)}</span>
+                <span>₹{tax.toFixed(2)}</span>
               </div>
               <div className="border-t border-gray-200 my-2"></div>
               <div className="flex justify-between font-semibold text-emerald-900 text-lg">
                 <span>Total</span>
-                <span>${finalTotal.toFixed(2)}</span>
+                <span>₹{finalTotal.toFixed(2)}</span>
               </div>
             </div>
             <div className="flex items-center mt-6 text-gray-500 text-xs gap-2">
