@@ -27,21 +27,22 @@ const Invoice: React.FC = () => {
     try {
       const doc = new jsPDF("p", "pt", "a4");
 
-      // Create an image element
+      // Create image element for invoice template
       const img = new Image();
       img.src = import.meta.env.BASE_URL + "invoice-template.png";
 
       img.onload = () => {
-        // Draw image on jsPDF
+        // Draw background image
         doc.addImage(img, "PNG", 0, 0, 595, 842);
 
-        // GST Calculation
+        // GST calculation
         const gstRate = invoiceData.gstRate ?? 0.18;
         const subTotal = invoiceData.totalPrice;
         const tax = subTotal * gstRate;
         const grandTotal = subTotal + tax;
 
-        doc.setFont("helvetica", "normal");
+        // Use a font that supports ₹ symbol
+        doc.setFont("times", "normal");
         doc.setFontSize(11);
 
         // Header
@@ -62,9 +63,10 @@ const Invoice: React.FC = () => {
         // Totals
         doc.text(`₹${subTotal.toFixed(2)}`, 500, 470, { align: "right" });
         doc.text(`₹${tax.toFixed(2)}`, 500, 490, { align: "right" });
-        doc.setFont("helvetica", "bold");
+        doc.setFont("times", "bold");
         doc.text(`₹${grandTotal.toFixed(2)}`, 500, 520, { align: "right" });
 
+        // Save PDF
         doc.save("invoice.pdf");
       };
 
