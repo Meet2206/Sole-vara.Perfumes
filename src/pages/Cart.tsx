@@ -143,7 +143,7 @@ const Cart = () => {
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-gray-600">
                     <span>Subtotal</span>
-                    <span>${totalPrice.toFixed(2)}</span>
+                    <span>₹{totalPrice.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-gray-600">
                     <span>Shipping</span>
@@ -152,7 +152,7 @@ const Cart = () => {
                   <div className="border-t border-gray-200 pt-3 mt-3">
                     <div className="flex justify-between text-lg font-medium text-emerald-900">
                       <span>Total</span>
-                      <span>${totalPrice.toFixed(2)}</span>
+                      <span>₹{totalPrice.toFixed(2)}</span>
                     </div>
                     <p className="text-xs text-gray-500 mt-1">
                       Including all taxes
