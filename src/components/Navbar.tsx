@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingBag, Menu, X, Settings } from 'lucide-react';
+import { ShoppingBag, Menu, X, User, LogOut } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const { totalItems } = useCart();
+  const { user, logout, isAuthenticated } = useAuth();
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -97,13 +100,47 @@ const Navbar = () => {
 
           {/* Cart Icon & Mobile Menu Button */}
           <div className="flex items-center">
-            <Link 
-              to="/admin" 
-              className="relative p-2 text-gray-700 hover:text-emerald-700 mr-2"
-              title="Admin Panel"
-            >
-              <Settings size={20} />
-            </Link>
+            {isAuthenticated ? (
+              <div className="relative mr-2">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center p-2 text-gray-700 hover:text-emerald-700"
+                >
+                  <User size={20} />
+                  <span className="ml-1 text-sm hidden md:block">{user?.name}</span>
+                </button>
+                
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                    <Link
+                      to="/dashboard"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setShowUserMenu(false);
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      <LogOut size={16} className="inline mr-2" />
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center p-2 text-gray-700 hover:text-emerald-700 mr-2"
+              >
+                <User size={20} />
+                <span className="ml-1 text-sm hidden md:block">Login</span>
+              </Link>
+            )}
             
             <Link 
               to="/cart" 
@@ -175,6 +212,18 @@ const Navbar = () => {
             >
               Contact
             </Link>
+            {isAuthenticated && (
+              <Link 
+                to="/dashboard" 
+                className={`text-sm uppercase tracking-wide ${
+                  location.pathname === '/dashboard' 
+                    ? 'text-emerald-800 font-medium' 
+                    : 'text-gray-700'
+                }`}
+              >
+                Dashboard
+              </Link>
+            )}
           </div>
         </div>
       </div>
