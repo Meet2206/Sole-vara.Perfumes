@@ -9,6 +9,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
 import Invoice from "./pages/Invoice";
+import Admin from "./pages/Admin";
 import { CartProvider } from "./context/CartContext";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               <Route path="checkout" element={<Checkout />} />
               <Route path="payment" element={<Payment />} />
               <Route path="invoice" element={<Invoice />} />
+              <Route path="admin" element={<Admin />} />
             </Route>
 
             {/* 404 Page */}

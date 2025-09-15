@@ -47,7 +47,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </h3>
           </Link>
           <span className="font-medium text-emerald-800">
-            ₹{product.price.toFixed(2)}
+            ₹{product.price.toLocaleString()}
           </span>
         </div>
         

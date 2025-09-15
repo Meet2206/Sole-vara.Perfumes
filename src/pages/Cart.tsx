@@ -80,7 +80,7 @@ const Cart = () => {
                             {item.product.volume} · {item.product.scentFamily}
                           </p>
                           <p className="text-emerald-800 font-medium">
-                            ${item.product.price.toFixed(2)}
+                            ₹{item.product.price.toLocaleString()}
                           </p>
                         </div>
                         

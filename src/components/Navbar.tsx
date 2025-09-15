@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShoppingBag, Menu, X, Settings } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 const Navbar = () => {
@@ -97,6 +97,14 @@ const Navbar = () => {
 
           {/* Cart Icon & Mobile Menu Button */}
           <div className="flex items-center">
+            <Link 
+              to="/admin" 
+              className="relative p-2 text-gray-700 hover:text-emerald-700 mr-2"
+              title="Admin Panel"
+            >
+              <Settings size={20} />
+            </Link>
+            
             <Link 
               to="/cart" 
               className="relative p-2 text-gray-700 hover:text-emerald-700"
