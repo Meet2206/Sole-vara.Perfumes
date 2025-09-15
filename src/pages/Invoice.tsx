@@ -55,16 +55,16 @@ const Invoice: React.FC = () => {
         invoiceData.cart.forEach((item: any) => {
           doc.text(item.name, 60, y);
           doc.text(String(item.quantity), 260, y);
-          doc.text(`₹${item.price.toFixed(2)}`, 360, y);
-          doc.text(`₹${(item.price * item.quantity).toFixed(2)}`, 460, y);
+          doc.text(`₹${item.price.toLocaleString()}`, 360, y);
+          doc.text(`₹${(item.price * item.quantity).toLocaleString()}`, 460, y);
           y += 30;
         });
 
         // Totals
-        doc.text(`₹${subTotal.toFixed(2)}`, 500, 470, { align: "right" });
-        doc.text(`₹${tax.toFixed(2)}`, 500, 490, { align: "right" });
+        doc.text(`₹${subTotal.toLocaleString()}`, 500, 470, { align: "right" });
+        doc.text(`₹${tax.toLocaleString()}`, 500, 490, { align: "right" });
         doc.setFont("times", "bold");
-        doc.text(`₹${grandTotal.toFixed(2)}`, 500, 520, { align: "right" });
+        doc.text(`₹${grandTotal.toLocaleString()}`, 500, 520, { align: "right" });
 
         // Save PDF
         doc.save("invoice.pdf");
@@ -108,7 +108,7 @@ const Invoice: React.FC = () => {
               <td className="p-2 border">{item.name}</td>
               <td className="p-2 border">{item.quantity}</td>
               <td className="p-2 border">
-                ₹{(item.price * item.quantity).toFixed(2)}
+                ₹{(item.price * item.quantity).toLocaleString()}
               </td>
             </tr>
           ))}
@@ -116,10 +116,10 @@ const Invoice: React.FC = () => {
       </table>
 
       <h2 className="text-lg font-semibold text-right mb-6">
-        Subtotal: ₹{invoiceData.totalPrice.toFixed(2)} <br />
-        GST (18%): ₹{(invoiceData.totalPrice * 0.18).toFixed(2)} <br />
+        Subtotal: ₹{invoiceData.totalPrice.toLocaleString()} <br />
+        GST (18%): ₹{(invoiceData.totalPrice * 0.18).toLocaleString()} <br />
         <span className="font-bold">
-          Total: ₹{(invoiceData.totalPrice * 1.18).toFixed(2)}
+          Total: ₹{(invoiceData.totalPrice * 1.18).toLocaleString()}
         </span>
       </h2>
 
