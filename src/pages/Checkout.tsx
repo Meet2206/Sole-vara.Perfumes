@@ -61,7 +61,7 @@ const Checkout = () => {
     if (!formData.state) newErrors.state = 'State is required';
 
     if (!formData.zipCode) newErrors.zipCode = 'ZIP code is required';
-    else if (!/^\d{5}(-\d{4})?$/.test(formData.zipCode)) newErrors.zipCode = 'Please enter a valid ZIP code';
+    else if (!/^\d{6}$/.test(formData.zipCode)) newErrors.zipCode = 'Please enter a valid 6-digit PIN code';
 
     if (!formData.phone) newErrors.phone = 'Phone number is required';
     else if (!/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(formData.phone)) {
@@ -313,7 +313,7 @@ const Checkout = () => {
 
                 <div>
                   <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700 mb-1">
-                    ZIP Code *
+                    PIN Code *
                   </label>
                   <input
                     type="text"
@@ -323,7 +323,8 @@ const Checkout = () => {
                     onChange={handleChange}
                     className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${errors.zipCode ? 'border-red-300' : 'border-gray-300'
                       }`}
-                    placeholder="ZIP code"
+                    placeholder="PIN code (6 digits)"
+                    maxLength={6}
                   />
                   {errors.zipCode && <p className="text-red-500 text-sm mt-1">{errors.zipCode}</p>}
                 </div>
