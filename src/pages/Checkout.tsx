@@ -3,12 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Lock, CreditCard, Shield } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 const Checkout = () => {
   const { cart, totalPrice } = useCart();
+  const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
+    email: user?.email || '',
     firstName: '',
     lastName: '',
     address: '',
@@ -22,6 +24,19 @@ const Checkout = () => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Auto-populate form data when user is logged in
+  useState(() => {
+    if (isAuthenticated && user) {
+      const nameParts = user.name.split(' ');
+      setFormData(prev => ({
+        ...prev,
+        email: user.email,
+        firstName: nameParts[0] || '',
+        lastName: nameParts.slice(1).join(' ') || '',
+      }));
+    }
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -169,11 +184,17 @@ const Checkout = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    disabled={isAuthenticated}
                     className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${errors.email ? 'border-red-300' : 'border-gray-300'
-                      }`}
+                      } ${isAuthenticated ? 'bg-gray-100' : ''}`}
                     placeholder="your@email.com"
                   />
                   {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                  {isAuthenticated && (
+                    <p className="text-sm text-gray-500 mt-1">
+                      Email auto-filled from your account
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -192,11 +213,122 @@ const Checkout = () => {
                   />
                   {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                 </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+                      First Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      disabled={isAuthenticated}
+                      className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${errors.firstName ? 'border-red-300' : 'border-gray-300'
+                        } ${isAuthenticated ? 'bg-gray-100' : ''}`}
+                      placeholder="First name"
+                    />
+                    {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
+                  </div>
+
+                  <div>
+                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+                      Last Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      disabled={isAuthenticated}
+                      className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${errors.lastName ? 'border-red-300' : 'border-gray-300'
+                        } ${isAuthenticated ? 'bg-gray-100' : ''}`}
+                      placeholder="Last name"
+                    />
+                    {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>}
+                  </div>
+                </div>
+
+                {isAuthenticated && (
+                  <p className="text-sm text-gray-500">
+                    Name auto-filled from your account
+                  </p>
+                )}
+
+                <div>
+                  <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+                    Address *
+                  </label>
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${errors.address ? 'border-red-300' : 'border-gray-300'
+                      }`}
+                    placeholder="Street address"
+                  />
+                  {errors.address && <p className="text-red-500 text-sm mt-1">{errors.address}</p>}
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                      City *
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${errors.city ? 'border-red-300' : 'border-gray-300'
+                        }`}
+                      placeholder="City"
+                    />
+                    {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
+                  </div>
+
+                  <div>
+                    <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">
+                      State *
+                    </label>
+                    <input
+                      type="text"
+                      id="state"
+                      name="state"
+                      value={formData.state}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${errors.state ? 'border-red-300' : 'border-gray-300'
+                        }`}
+                      placeholder="State"
+                    />
+                    {errors.state && <p className="text-red-500 text-sm mt-1">{errors.state}</p>}
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700 mb-1">
+                    ZIP Code *
+                  </label>
+                  <input
+                    type="text"
+                    id="zipCode"
+                    name="zipCode"
+                    value={formData.zipCode}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${errors.zipCode ? 'border-red-300' : 'border-gray-300'
+                      }`}
+                    placeholder="ZIP code"
+                  />
+                  {errors.zipCode && <p className="text-red-500 text-sm mt-1">{errors.zipCode}</p>}
+                </div>
               </div>
             </div>
-
-            {/* Shipping Address */}
-            {/* ... (keep all your JSX for address, shipping, etc. unchanged) ... */}
 
             {/* Continue Button */}
             <form onSubmit={handleSubmit}>
