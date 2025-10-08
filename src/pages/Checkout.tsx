@@ -207,7 +207,7 @@ const cityStateMapping: Record<string, { state: string }> = {
   // Uttar Pradesh
   'lucknow': { state: 'Uttar Pradesh' },
   'kanpur': { state: 'Uttar Pradesh' },
-  'varan
+  
 ::contentReference[oaicite:0]{index=0}
  
 
