@@ -38,18 +38,41 @@ const Payment: React.FC = () => {
     e.preventDefault();
     if (!validatePayment()) return;
 
+    const subtotal = totalPrice;
+    const tax = Math.round(subtotal * 0.06);
+    const grandTotal = subtotal + tax;
+
+    const invoiceNumber = `INV-${Date.now().toString().slice(-6)}`;
+    const invoiceDate = new Date().toLocaleDateString('en-GB').replace(/\//g, '-');
+
     const invoiceData = {
-      customerName: paymentData.nameOnCard, // ✅ Card holder name instead of orderData
-      email: orderData.email,
-      phone: orderData.phone,
-      address: orderData.address,
-      cart: cart.map((item: any) => ({
-        id: item.product.id,
-        name: item.product.name,
-        price: item.product.price,
-        quantity: item.quantity,
-      })), // ✅ product details passed from cart
-      totalPrice,
+      invoice: {
+        invoiceTo: paymentData.nameOnCard,
+        invoiceNo: invoiceNumber,
+        invoiceDate: invoiceDate,
+        items: cart.map((item: any) => ({
+          name: `${item.product.name} ${item.product.volume}`,
+          qty: item.quantity,
+          price: item.product.price,
+          total: item.product.price * item.quantity,
+        })),
+        subtotal: subtotal,
+        tax: tax,
+        grandTotal: grandTotal,
+      },
+      admin: {
+        name: "Juliana Meera",
+        email: "customer@example.com",
+        phone: "9134527071",
+        designation: "Administrator",
+        location: "Tarsali",
+      },
+      brand: {
+        companyName: "Solévara Perfumes",
+        contactNumber: "+91 9000900099",
+        email: "solévara.perfumes@gmail.com",
+        address: "Vadodara, Gujarat",
+      },
     };
 
     clearCart();

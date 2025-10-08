@@ -1,0 +1,43 @@
+{
+  "invoice": {
+    "invoiceTo": "Rahul Sharma",
+    "invoiceNo": "1023",
+    "invoiceDate": "08-10-2025",
+    "items": [
+      {
+        "name": "Velour Eclipse 50ml",
+        "qty": 2,
+        "price": 1250,
+        "total": 2500
+      },
+      {
+        "name": "Royal Veil 30ml",
+        "qty": 1,
+        "price": 950,
+        "total": 950
+      },
+      {
+        "name": "Golden Whisper 100ml",
+        "qty": 1,
+        "price": 1800,
+        "total": 1800
+      }
+    ],
+    "subtotal": 5250,
+    "tax": 315,
+    "grandTotal": 5565
+  },
+  "admin": {
+    "name": "Juliana Meera",
+    "email": "customer@example.com",
+    "phone": "9134527071",
+    "designation": "Administrator",
+    "location": "Tarsali"
+  },
+  "brand": {
+    "companyName": "Solévara Perfumes",
+    "contactNumber": "+91 9000900099",
+    "email": "solévara.perfumes@gmail.com",
+    "address": "Vadodara, Gujarat"
+  }
+}
