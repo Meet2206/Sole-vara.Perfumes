@@ -117,12 +117,26 @@ const Payment: React.FC = () => {
                 value = value.slice(0, 2) + "/" + value.slice(2, 4);
               }
 
-              // validate month
+              // validate month and expiry date
               let errorMsg = "";
               if (value.length >= 2) {
                 const month = parseInt(value.slice(0, 2), 10);
                 if (month < 1 || month > 12) {
                   errorMsg = "Invalid month (01–12)";
+                } else if (value.length === 5) {
+                  // Full date validation (MM/YY format)
+                  const year = parseInt(value.slice(3, 5), 10);
+                  const currentDate = new Date();
+                  const currentMonth = currentDate.getMonth() + 1; // getMonth() returns 0-11
+                  const currentYear = currentDate.getFullYear() % 100; // Get last 2 digits
+                  
+                  // Convert 2-digit year to full year (assuming 20xx)
+                  const fullYear = 2000 + year;
+                  const currentFullYear = currentDate.getFullYear();
+                  
+                  if (fullYear < currentFullYear || (fullYear === currentFullYear && month < currentMonth)) {
+                    errorMsg = "Expiry date cannot be in the past";
+                  }
                 }
               }
 

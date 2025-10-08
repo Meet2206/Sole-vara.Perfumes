@@ -32,7 +32,7 @@ const Invoice: React.FC = () => {
       const subTotal = invoiceData.totalPrice;
       const tax = subTotal * gstRate;
       const grandTotal = subTotal + tax;
-      const invoiceNo = invoiceData.invoiceNo || "INV-0001";
+      const invoiceNo = invoiceData.invoiceNo || `INV-${Date.now().toString().slice(-6)}`;
       const currentDate = new Date().toLocaleDateString();
 
       // Load the invoice template image
@@ -58,36 +58,43 @@ const Invoice: React.FC = () => {
       // Set font and color for text overlay
       doc.setFont("helvetica", "normal");
       doc.setTextColor(0, 0, 0);
-      doc.setFontSize(10);
+      doc.setFontSize(11);
 
-      // Customer details (INVOICE TO section)
-      doc.text(invoiceData.customerName || "Customer Name", 40, 70);
-      doc.text(invoiceData.email || "customer@email.com", 40, 75);
-      doc.text(invoiceData.phone || "Phone Number", 40, 80);
+      // Customer details (INVOICE TO section) - positioned according to template
+      doc.text(invoiceData.customerName || "Customer Name", 40, 240);
+      doc.text(invoiceData.email || "customer@email.com", 40, 248);
+      doc.text(invoiceData.phone || "Phone Number", 40, 256);
       if (invoiceData.address) {
-        doc.text(invoiceData.address, 40, 85);
+        // Split long address into multiple lines if needed
+        const addressLines = doc.splitTextToSize(invoiceData.address, 80);
+        doc.text(addressLines, 40, 264);
       }
 
-      // Invoice details (top right)
-      doc.text(invoiceNo, 170, 95);
-      doc.text(currentDate, 170, 105);
+      // Invoice details (top right) - positioned according to template
+      doc.text(invoiceNo, 170, 352);
+      doc.text(currentDate, 170, 388);
 
       // Product details in the table
-      let yPosition = 125;
+      let yPosition = 465; // Starting position for first product row
       invoiceData.cart.forEach((item: any) => {
-        const itemName = item.name.length > 20 ? item.name.substring(0, 20) + "..." : item.name;
-        doc.text(itemName, 40, yPosition);
-        doc.text(String(item.quantity), 105, yPosition);
-        doc.text(`₹${item.price.toLocaleString()}`, 130, yPosition);
-        doc.text(`₹${(item.price * item.quantity).toLocaleString()}`, 165, yPosition);
-        yPosition += 8;
+        // Ensure product name fits in the column
+        const itemName = item.name.length > 25 ? item.name.substring(0, 25) + "..." : item.name;
+        
+        // Position according to template columns
+        doc.text(itemName, 40, yPosition);                                    // NAME column
+        doc.text(String(item.quantity), 470, yPosition);                      // QTY column  
+        doc.text(`₹${item.price.toLocaleString()}`, 630, yPosition);          // PRICE column
+        doc.text(`₹${(item.price * item.quantity).toLocaleString()}`, 775, yPosition); // TOTAL column
+        
+        yPosition += 35; // Space between rows according to template
       });
 
       // Totals section
-      doc.text(`₹${subTotal.toLocaleString()}`, 170, 220);
-      doc.text(`₹${tax.toLocaleString()}`, 170, 235);
+      doc.text(`₹${subTotal.toLocaleString()}`, 775, 822);  // Sub-total position
+      doc.text(`₹${tax.toLocaleString()}`, 775, 873);       // Tax position
       doc.setFont("helvetica", "bold");
-      doc.text(`₹${grandTotal.toLocaleString()}`, 170, 250);
+      doc.setFontSize(12);
+      doc.text(`₹${grandTotal.toLocaleString()}`, 775, 918); // Total position
 
       // Save PDF
       doc.save(`Solevara_Invoice_${invoiceNo}.pdf`);

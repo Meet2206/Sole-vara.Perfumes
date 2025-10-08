@@ -5,6 +5,74 @@ import { ChevronLeft, Lock, CreditCard, Shield } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
+// City to State mapping for Indian cities
+const cityStateMapping: Record<string, string> = {
+  // Gujarat
+  'nadiad': 'Gujarat',
+  'ahmedabad': 'Gujarat',
+  'surat': 'Gujarat',
+  'vadodara': 'Gujarat',
+  'rajkot': 'Gujarat',
+  'bhavnagar': 'Gujarat',
+  'jamnagar': 'Gujarat',
+  'gandhinagar': 'Gujarat',
+  'anand': 'Gujarat',
+  'bharuch': 'Gujarat',
+  
+  // Maharashtra
+  'mumbai': 'Maharashtra',
+  'pune': 'Maharashtra',
+  'nagpur': 'Maharashtra',
+  'nashik': 'Maharashtra',
+  'aurangabad': 'Maharashtra',
+  'solapur': 'Maharashtra',
+  'thane': 'Maharashtra',
+  'kolhapur': 'Maharashtra',
+  
+  // Delhi
+  'delhi': 'Delhi',
+  'new delhi': 'Delhi',
+  
+  // Karnataka
+  'bangalore': 'Karnataka',
+  'bengaluru': 'Karnataka',
+  'mysore': 'Karnataka',
+  'hubli': 'Karnataka',
+  'mangalore': 'Karnataka',
+  
+  // Tamil Nadu
+  'chennai': 'Tamil Nadu',
+  'coimbatore': 'Tamil Nadu',
+  'madurai': 'Tamil Nadu',
+  'salem': 'Tamil Nadu',
+  'tiruchirappalli': 'Tamil Nadu',
+  
+  // West Bengal
+  'kolkata': 'West Bengal',
+  'howrah': 'West Bengal',
+  'durgapur': 'West Bengal',
+  
+  // Rajasthan
+  'jaipur': 'Rajasthan',
+  'jodhpur': 'Rajasthan',
+  'udaipur': 'Rajasthan',
+  'kota': 'Rajasthan',
+  
+  // Uttar Pradesh
+  'lucknow': 'Uttar Pradesh',
+  'kanpur': 'Uttar Pradesh',
+  'agra': 'Uttar Pradesh',
+  'varanasi': 'Uttar Pradesh',
+  'allahabad': 'Uttar Pradesh',
+  'prayagraj': 'Uttar Pradesh',
+  
+  // Madhya Pradesh
+  'bhopal': 'Madhya Pradesh',
+  'indore': 'Madhya Pradesh',
+  'gwalior': 'Madhya Pradesh',
+  'jabalpur': 'Madhya Pradesh',
+};
+
 const Checkout = () => {
   const { cart, totalPrice } = useCart();
   const { user, isAuthenticated } = useAuth();
@@ -40,7 +108,20 @@ const Checkout = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Auto-populate state based on city
+    if (name === 'city') {
+      const cityLower = value.toLowerCase().trim();
+      const matchedState = cityStateMapping[cityLower];
+      
+      setFormData(prev => ({ 
+        ...prev, 
+        [name]: value,
+        state: matchedState || prev.state
+      }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
 
     // Clear error when user starts typing
     if (errors[name]) {
