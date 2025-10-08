@@ -5,73 +5,212 @@ import { ChevronLeft, Lock, CreditCard, Shield } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
-// City to State mapping for Indian cities
-const cityStateMapping: Record<string, string> = {
-  // Gujarat
-  'nadiad': 'Gujarat',
-  'ahmedabad': 'Gujarat',
-  'surat': 'Gujarat',
-  'vadodara': 'Gujarat',
-  'rajkot': 'Gujarat',
-  'bhavnagar': 'Gujarat',
-  'jamnagar': 'Gujarat',
-  'gandhinagar': 'Gujarat',
-  'anand': 'Gujarat',
-  'bharuch': 'Gujarat',
-  
-  // Maharashtra
-  'mumbai': 'Maharashtra',
-  'pune': 'Maharashtra',
-  'nagpur': 'Maharashtra',
-  'nashik': 'Maharashtra',
-  'aurangabad': 'Maharashtra',
-  'solapur': 'Maharashtra',
-  'thane': 'Maharashtra',
-  'kolhapur': 'Maharashtra',
-  
+const cityStateMapping: Record<string, { state: string }> = {
+  // Andhra Pradesh
+  'amaravati': { state: 'Andhra Pradesh' },
+  'vijayawada': { state: 'Andhra Pradesh' },
+  'visakhapatnam': { state: 'Andhra Pradesh' },
+  'guntur': { state: 'Andhra Pradesh' },
+  'nellore': { state: 'Andhra Pradesh' },
+  'kakinada': { state: 'Andhra Pradesh' },
+  'rajahmundry': { state: 'Andhra Pradesh' },
+
+  // Arunachal Pradesh
+  'itanagar': { state: 'Arunachal Pradesh' },
+
+  // Assam
+  'dispur': { state: 'Assam' },
+  'guwahati': { state: 'Assam' },
+  'silchar': { state: 'Assam' },
+  'dibrugarh': { state: 'Assam' },
+  'jorhat': { state: 'Assam' },
+  'nagaon': { state: 'Assam' },
+
+  // Bihar
+  'patna': { state: 'Bihar' },
+  'gaya': { state: 'Bihar' },
+  'bhagalpur': { state: 'Bihar' },
+  'muzaffarpur': { state: 'Bihar' },
+  'purnia': { state: 'Bihar' },
+  'darbhanga': { state: 'Bihar' },
+
+  // Chandigarh
+  'chandigarh': { state: 'Chandigarh' },
+
+  // Chhattisgarh
+  'raipur': { state: 'Chhattisgarh' },
+  'bilaspur': { state: 'Chhattisgarh' },
+  'durg': { state: 'Chhattisgarh' },
+  'bhilai': { state: 'Chhattisgarh' },
+
+  // Dadra and Nagar Haveli and Daman and Diu
+  'silvassa': { state: 'Dadra and Nagar Haveli and Daman and Diu' },
+  'daman': { state: 'Dadra and Nagar Haveli and Daman and Diu' },
+  'diu': { state: 'Dadra and Nagar Haveli and Daman and Diu' },
+
   // Delhi
-  'delhi': 'Delhi',
-  'new delhi': 'Delhi',
-  
+  'delhi': { state: 'Delhi' },
+  'new delhi': { state: 'Delhi' },
+
+  // Goa
+  'panaji': { state: 'Goa' },
+  'margao': { state: 'Goa' },
+  'vasco da gama': { state: 'Goa' },
+  'mapusa': { state: 'Goa' },
+
+  // Gujarat
+  'ahmedabad': { state: 'Gujarat' },
+  'surat': { state: 'Gujarat' },
+  'vadodara': { state: 'Gujarat' },
+  'rajkot': { state: 'Gujarat' },
+  'bhavnagar': { state: 'Gujarat' },
+  'jamnagar': { state: 'Gujarat' },
+  'gandhinagar': { state: 'Gujarat' },
+  'anand': { state: 'Gujarat' },
+  'bharuch': { state: 'Gujarat' },
+
+  // Haryana
+  'gurugram': { state: 'Haryana' },
+  'faridabad': { state: 'Haryana' },
+  'panipat': { state: 'Haryana' },
+  'ambala': { state: 'Haryana' },
+  'karnal': { state: 'Haryana' },
+  'hisar': { state: 'Haryana' },
+  'sonipat': { state: 'Haryana' },
+
+  // Himachal Pradesh
+  'shimla': { state: 'Himachal Pradesh' },
+  'solan': { state: 'Himachal Pradesh' },
+  'mandi': { state: 'Himachal Pradesh' },
+  'dharamshala': { state: 'Himachal Pradesh' },
+  'una': { state: 'Himachal Pradesh' },
+
+  // Jammu and Kashmir
+  'srinagar': { state: 'Jammu and Kashmir' },
+  'jammu': { state: 'Jammu and Kashmir' },
+  'anantnag': { state: 'Jammu and Kashmir' },
+
+  // Jharkhand
+  'ranchi': { state: 'Jharkhand' },
+  'jamshedpur': { state: 'Jharkhand' },
+  'dhanbad': { state: 'Jharkhand' },
+  'bokaro steel city': { state: 'Jharkhand' },
+  'hazaribagh': { state: 'Jharkhand' },
+
   // Karnataka
-  'bangalore': 'Karnataka',
-  'bengaluru': 'Karnataka',
-  'mysore': 'Karnataka',
-  'hubli': 'Karnataka',
-  'mangalore': 'Karnataka',
-  
-  // Tamil Nadu
-  'chennai': 'Tamil Nadu',
-  'coimbatore': 'Tamil Nadu',
-  'madurai': 'Tamil Nadu',
-  'salem': 'Tamil Nadu',
-  'tiruchirappalli': 'Tamil Nadu',
-  
-  // West Bengal
-  'kolkata': 'West Bengal',
-  'howrah': 'West Bengal',
-  'durgapur': 'West Bengal',
-  
-  // Rajasthan
-  'jaipur': 'Rajasthan',
-  'jodhpur': 'Rajasthan',
-  'udaipur': 'Rajasthan',
-  'kota': 'Rajasthan',
-  
-  // Uttar Pradesh
-  'lucknow': 'Uttar Pradesh',
-  'kanpur': 'Uttar Pradesh',
-  'agra': 'Uttar Pradesh',
-  'varanasi': 'Uttar Pradesh',
-  'allahabad': 'Uttar Pradesh',
-  'prayagraj': 'Uttar Pradesh',
-  
+  'bangalore': { state: 'Karnataka' },
+  'bengaluru': { state: 'Karnataka' },
+  'mysore': { state: 'Karnataka' },
+  'hubli': { state: 'Karnataka' },
+  'mangalore': { state: 'Karnataka' },
+
+  // Kerala
+  'kochi': { state: 'Kerala' },
+  'thiruvananthapuram': { state: 'Kerala' },
+  'kollam': { state: 'Kerala' },
+  'thrissur': { state: 'Kerala' },
+  'kozhikode': { state: 'Kerala' },
+  'alappuzha': { state: 'Kerala' },
+  'palakkad': { state: 'Kerala' },
+
   // Madhya Pradesh
-  'bhopal': 'Madhya Pradesh',
-  'indore': 'Madhya Pradesh',
-  'gwalior': 'Madhya Pradesh',
-  'jabalpur': 'Madhya Pradesh',
-};
+  'indore': { state: 'Madhya Pradesh' },
+  'bhopal': { state: 'Madhya Pradesh' },
+  'gwalior': { state: 'Madhya Pradesh' },
+  'jabalpur': { state: 'Madhya Pradesh' },
+  'ujjain': { state: 'Madhya Pradesh' },
+  'sagar': { state: 'Madhya Pradesh' },
+  'satna': { state: 'Madhya Pradesh' },
+
+  // Maharashtra
+  'mumbai': { state: 'Maharashtra' },
+  'pune': { state: 'Maharashtra' },
+  'nagpur': { state: 'Maharashtra' },
+  'nashik': { state: 'Maharashtra' },
+  'aurangabad': { state: 'Maharashtra' },
+  'solapur': { state: 'Maharashtra' },
+  'thane': { state: 'Maharashtra' },
+  'kolhapur': { state: 'Maharashtra' },
+
+  // Manipur
+  'imphal': { state: 'Manipur' },
+  'thoubal': { state: 'Manipur' },
+  'bishnupur': { state: 'Manipur' },
+
+  // Meghalaya
+  'shillong': { state: 'Meghalaya' },
+  'tura': { state: 'Meghalaya' },
+
+  // Mizoram
+  'aizawl': { state: 'Mizoram' },
+  'lunglei': { state: 'Mizoram' },
+
+  // Nagaland
+  'kohima': { state: 'Nagaland' },
+  'dimapur': { state: 'Nagaland' },
+  'mokokchung': { state: 'Nagaland' },
+
+  // Odisha
+  'bhubaneswar': { state: 'Odisha' },
+  'cuttack': { state: 'Odisha' },
+  'rourkela': { state: 'Odisha' },
+  'sambalpur': { state: 'Odisha' },
+  'berhampur': { state: 'Odisha' },
+  'balasore': { state: 'Odisha' },
+
+  // Puducherry
+  'puducherry': { state: 'Puducherry' },
+  'karaikal': { state: 'Puducherry' },
+  'mahe': { state: 'Puducherry' },
+  'yanam': { state: 'Puducherry' },
+
+  // Punjab
+  'amritsar': { state: 'Punjab' },
+  'ludhiana': { state: 'Punjab' },
+  'jalandhar': { state: 'Punjab' },
+  'patiala': { state: 'Punjab' },
+  'bathinda': { state: 'Punjab' },
+  'mohali': { state: 'Punjab' },
+
+  // Rajasthan
+  'jaipur': { state: 'Rajasthan' },
+  'udaipur': { state: 'Rajasthan' },
+  'jodhpur': { state: 'Rajasthan' },
+  'kota': { state: 'Rajasthan' },
+  'bikaner': { state: 'Rajasthan' },
+  'ajmer': { state: 'Rajasthan' },
+
+  // Sikkim
+  'gangtok': { state: 'Sikkim' },
+  'namchi': { state: 'Sikkim' },
+
+  // Tamil Nadu
+  'chennai': { state: 'Tamil Nadu' },
+  'coimbatore': { state: 'Tamil Nadu' },
+  'madurai': { state: 'Tamil Nadu' },
+  'salem': { state: 'Tamil Nadu' },
+  'tiruchirappalli': { state: 'Tamil Nadu' },
+  'erode': { state: 'Tamil Nadu' },
+  'vellore': { state: 'Tamil Nadu' },
+  'thoothukudi': { state: 'Tamil Nadu' },
+
+  // Telangana
+  'hyderabad': { state: 'Telangana' },
+  'warangal': { state: 'Telangana' },
+  'nizamabad': { state: 'Telangana' },
+  'karimnagar': { state: 'Telangana' },
+  'khammam': { state: 'Telangana' },
+
+  // Tripura
+  'agartala': { state: 'Tripura' },
+
+  // Uttar Pradesh
+  'lucknow': { state: 'Uttar Pradesh' },
+  'kanpur': { state: 'Uttar Pradesh' },
+  'varan
+::contentReference[oaicite:0]{index=0}
+ 
+
 
 const Checkout = () => {
   const { cart, totalPrice } = useCart();
