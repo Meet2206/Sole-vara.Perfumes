@@ -4,7 +4,7 @@
 
 *A sleek and modern e-commerce experience for perfume lovers, built with React and Tailwind CSS.*
 
-![Perfume Bottle Animation](https://raw.githubusercontent.com/Meet2206/Sole-vara.Perfumes/main/public/assets/perfume-bottle.svg)
+![Perfume Bottle Animation](public/assets/Banner 1/1.png)
 
 [![Build](https://img.shields.io/github/actions/workflow/status/Meet2206/Sole-vara.Perfumes/ci.yml?label=Build&logo=github)](https://github.com/Meet2206/Sole-vara.Perfumes/actions)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Meet2206/Sole-vara.Perfumes?color=FF6F91)
