@@ -429,7 +429,8 @@ const Checkout = () => {
                     onChange={handleChange}
                     className={`w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent ${errors.phone ? 'border-red-300' : 'border-gray-300'
                       }`}
-                    placeholder="(555) 123-4567"
+                    placeholder="88332 23232 (10 digits)"
+                    maxLength={10}
                   />
                   {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                 </div>
