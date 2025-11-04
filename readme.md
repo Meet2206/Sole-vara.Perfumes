@@ -1,25 +1,50 @@
-# 🌸 Solévara 🧴✨
+<div align="center">
 
-Solévara is a sleek and modern e-commerce website for perfume shopping. Built with React and designed for a smooth, user-friendly experience. Browse a collection of fine perfumes and explore our offerings in an elegant UI.
+# 🌸 **Solévara.Perfumes** 🧴✨
+
+*A sleek and modern e-commerce experience for perfume lovers, built with React and Tailwind CSS.*
+
+![Perfume Bottle Animation](https://raw.githubusercontent.com/Meet2206/Sole-vara.Perfumes/main/public/assets/perfume-bottle.svg)
+
+[![Build](https://img.shields.io/github/actions/workflow/status/Meet2206/Sole-vara.Perfumes/ci.yml?label=Build&logo=github)](https://github.com/Meet2206/Sole-vara.Perfumes/actions)
+![GitHub repo size](https://img.shields.io/github/repo-size/Meet2206/Sole-vara.Perfumes?color=FF6F91)
+![License](https://img.shields.io/badge/License-MIT-FFD6E0)
+![Status](https://img.shields.io/badge/Status-Active-7a3b47)
+
+</div>
+
+---
+
+## 🪶 Overview
+
+**Solévara.Perfumes** is an elegant perfume storefront designed to blend **art, fragrance, and technology**.  
+Built with **React** and **Tailwind CSS**, it offers smooth navigation, delicate micro-interactions, and a visually refined shopping experience.
 
 ---
 
 ## ✨ Features
 
-- 💄 **Responsive UI** – A clean and modern design for all screen sizes.
-- 🔁 **Smooth Page Transitions** – Effortless navigation between Home, Shop, About, and Contact.
-- 🛍️ **Product Display** – An elegant shop section showcasing the perfumes.
-- 📞 **Contact Form** – Easy-to-use contact form for customer inquiries.
-- 🧴 **Perfume Bottle Icons** – Styled perfume icons representing each product.
-- ⚡ **Built with React** – Fast and efficient with React Router DOM.
+- 💄 **Responsive UI** – Modern design, optimized for all screen sizes.
+- 🔁 **Smooth Page Transitions** – Seamless navigation between pages.
+- 🛍️ **Product Display** – Elegant layout showcasing perfumes.
+- 📞 **Contact Form** – User-friendly form for quick inquiries.
+- 🧴 **Perfume Icons** – Styled icons representing each product.
+- ⚡ **React + Vite + Tailwind** – Fast, modular, and maintainable.
+- 🧠 **Optimized Performance** – Fast loading and SEO-friendly.
+- ♿ **Accessibility Aware** – Semantic HTML and ARIA labeling.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React.js, React Router
-- **Styling**: CSS / Tailwind CSS 
-- **Version Control**: Git, GitHub
+| Category | Technologies |
+|-----------|---------------|
+| **Frontend** | React.js, React Router DOM |
+| **Styling** | Tailwind CSS, Custom CSS |
+| **Build Tool** | Vite |
+| **Version Control** | Git, GitHub |
+| **Deployment** | Netlify |
+| **Linting & Formatting** | ESLint, Prettier |
 
 ---
 
@@ -27,34 +52,25 @@ Solévara is a sleek and modern e-commerce website for perfume shopping. Built 
 
 ### Prerequisites
 
-- Node.js and npm installed on your machine.
+- [Node.js](https://nodejs.org/) and npm installed.
 
 ### Installation
 
-1. Clone the repository to your local machine:
+```bash
+# Clone repository
+git clone https://github.com/Meet2206/Sole-vara.Perfumes.git
 
-   ```bash
-   git clone https://github.com/Meet2206/Aromera.Perfumes.git
+# Navigate into project
+cd Sole-vara.Perfumes
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ````
 
-2. Navigate to the project directory:
-  ```bash
-   cd Aromera.Perfumes
-   ````
-
-3. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-4. Start the development server:
-
-   ```bash
-   npm start
-   ```
-
-The app should now be running locally at local host server
+App runs locally at **[http://localhost:5173](http://localhost:5173)**
 
 ---
 
@@ -63,32 +79,105 @@ The app should now be running locally at local host server
 ```
 Solévara/
 ├── public/
+│   └── assets/
 ├── src/
 │   ├── components/
 │   ├── pages/
 │   ├── App.jsx
 │   └── index.js
+├── .gitignore
+├── README.md
 ├── package.json
-└── README.md
-````
+├── package-lock.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vite.config.ts
+└── sample-invoice-data.json
+```
+
+### 🧩 Folder Highlights
+
+* **components/** – Reusable UI components (Navbar, Cards, Footer, etc.)
+* **pages/** – Main routes like Home, Shop, About, Contact
+* **public/assets/** – Static images and perfume illustrations
+* **vite.config.ts** – Vite configuration for fast builds
+* **tailwind.config.js** – Design system and theme setup
+
+---
+
+## ⚙️ Configuration
+
+To configure environment variables, create a `.env` file in the root:
+
+```bash
+VITE_API_URL=https://api.example.com
+VITE_APP_NAME=Solevara
+```
 
 ---
 
 ## ✅ Future Enhancements
 
-* -> Add product filtering and sorting by categories or price.
-* -> Integrate a shopping cart and checkout system.
-* -> Payment gateway integration for online purchases.
-* -> Deploy to platforms like **Vercel** or **Netlify** for live access.
+* 🧺 Add product filtering & sorting by category or price
+* 💳 Integrate shopping cart & checkout
+* 🔐 Enable secure payment gateway
+* 🚀 Deploy live on **Vercel** or **Netlify**
+* 🌗 Add dark mode toggle
+* 🧠 Integrate AI-based perfume recommendations
 
 ---
 
-## 🧑‍💻 Author
+## 🧪 Testing & Linting
+
+```bash
+# Run tests (if configured)
+npm test
+
+# Run linter
+npm run lint
+
+# Format code
+npm run format
+```
+
+---
+
+## 💅 Design Philosophy
+
+> “Solévara blends elegance with interaction — every animation and color evokes the essence of fine fragrance.”
+
+* Minimal, airy layout
+* Muted pink tones (#FF6F91 / #FFD6E0 / #7a3b47)
+* Smooth transitions and glassmorphism effects
+* Subtle hover & scroll animations for user delight
+
+---
+
+## 👩‍💻 Author
 
 **Meet Limbachiya**
+[GitHub](https://github.com/Meet2206) • [Portfolio](#) • [LinkedIn](#)
 
 ---
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](./LICENSE).
+
+---
+
+## 🌐 Live Demo (Coming Soon)
+
+Stay tuned for the deployed version on **Vercel**.
+Once deployed, the link will be updated here.
+
+---
+
+<div align="center">
+
+💐 *Crafted with love, code, and a touch of perfume magic.* 💐
+
+</div>
