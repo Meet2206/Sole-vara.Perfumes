@@ -24,14 +24,14 @@ Built with **React** and **Tailwind CSS**, it offers smooth navigation, delicate
 
 ## ✨ Features
 
-- 💄 **Responsive UI** – Modern design, optimized for all screen sizes.
-- 🔁 **Smooth Page Transitions** – Seamless navigation between pages.
-- 🛍️ **Product Display** – Elegant layout showcasing perfumes.
-- 📞 **Contact Form** – User-friendly form for quick inquiries.
-- 🧴 **Perfume Icons** – Styled icons representing each product.
-- ⚡ **React + Vite + Tailwind** – Fast, modular, and maintainable.
-- 🧠 **Optimized Performance** – Fast loading and SEO-friendly.
-- ♿ **Accessibility Aware** – Semantic HTML and ARIA labeling.
+- 💄 **Responsive UI** – Modern design, optimized for all screen sizes.  
+- 🔁 **Smooth Page Transitions** – Seamless navigation between pages.  
+- 🛍️ **Product Display** – Elegant layout showcasing perfumes.  
+- 📞 **Contact Form** – User-friendly form for quick inquiries.  
+- 🧴 **Perfume Icons** – Styled icons representing each product.  
+- ⚡ **React + Vite + Tailwind** – Fast, modular, and maintainable.  
+- 🧠 **Optimized Performance** – Fast loading and SEO-friendly.  
+- ♿ **Accessibility Aware** – Semantic HTML and ARIA labeling.  
 
 ---
 
@@ -153,6 +153,15 @@ npm run format
 * Muted pink tones (#FF6F91 / #FFD6E0 / #7a3b47)
 * Smooth transitions and glassmorphism effects
 * Subtle hover & scroll animations for user delight
+* **Visual design & branding inspired by modern perfume editorials**
+
+### 🧴 Design Tools Used
+
+* 🎨 **Canva** – for banner design, typography composition, and layout styling.
+* 📦 **Pacdora** – for realistic **perfume bottle 3D mockups** and packaging visualizations.
+* 🧠 **Figma (optional)** – for layout wireframing and component flow before implementation.
+
+> Combining Canva’s visual flexibility with Pacdora’s realistic 3D rendering made it possible to create a truly immersive and branded aesthetic for *Solévara.*
 
 ---
 
@@ -176,8 +185,22 @@ Once deployed, the link will be updated here.
 
 ---
 
+## 🎨 Assets & Credits
+
+| Type               | Tool                 | Purpose                               | Link                                                   |
+| ------------------ | -------------------- | ------------------------------------- | ------------------------------------------------------ |
+| **Banner Design**  | Canva                | Typography, layout, composition       | [https://www.canva.com/](https://www.canva.com/)       |
+| **Bottle Mockups** | Pacdora              | 3D perfume bottle renders & packaging | [https://www.pacdora.com/](https://www.pacdora.com/)   |
+| **Icons**          | Flaticon / Heroicons | Decorative & interface icons          | [https://www.flaticon.com/](https://www.flaticon.com/) |
+| **Typography**     | Google Fonts         | Poppins, Playfair Display             | [https://fonts.google.com/](https://fonts.google.com/) |
+
+> All visuals are used under fair use for project representation.
+> 3D renders generated with **Pacdora** are original design compositions.
+
+---
+
 <div align="center">
 
-💐 *Crafted with love, code, and a touch of perfume magic.* 💐
+💐 *Crafted with love, code, Canva, Pacdora, and a touch of perfume magic.* 💐
 
 </div>
